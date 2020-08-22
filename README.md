@@ -1,1 +1,1 @@
-"# vidly-clone" 
+# vidly-clone
