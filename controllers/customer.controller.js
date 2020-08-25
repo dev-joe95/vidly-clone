@@ -15,15 +15,15 @@ exports.getCustomerById = async (req, res) => {
     })
 };
 
-exports.AddCustomer = async (req, res) => {
+exports.addCustomer = async (req, res) => {
     const newCustomer = new Customer(req.body);
     await newCustomer.save((err, customer) => {
-        if (err => res.status(400).send(err))
-            res.json(customer);
+        if (err) res.status(404).send(err)
+        res.json(customer);
     });
 };
 
-exports.UpdateCustomer = async (req, res) => {
+exports.updateCustomer = async (req, res) => {
     await Customer.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, customer) => {
         if (err) res.status(400).send(err);
         res.json(customer);
