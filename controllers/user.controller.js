@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 exports.getCurrentUser = async (req, res) => {
     const user = await User.findById(req.users._id)
-    .select('-password') 
+        .select('-password')
 
     res.send(user);
 };
@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     newUser.password = await bcrypt.hash(newUser.password, salt)
     await newUser.save((err, user) => {
-        if (err) res.status(404).send(err)
+        if (err) res.status(500).send(err)
         const token = user.generateToken()
         res.header('x-auth-token', token).json(_.pick(user, ['_id', 'name', 'email']));
     });

@@ -19,7 +19,7 @@ exports.addMovie = async (req, res) => {
     const newMovie = new Movie(req.body);
     const genre = await Genre.findById(req.body.genreId);
     await newMovie.save((err, movie) => {
-        if (err) res.status(404).send(err)
+        if (err) res.status(500).send(err)
         res.json(movie);
     });
 };
@@ -33,7 +33,7 @@ exports.updateMovie = async (req, res) => {
 
 exports.deleteMovie = async (req, res) => {
     await Movie.findByIdAndRemove(req.params.id, (err) => {
-        if (err) res.status(404).send(err);
+        if (err) res.status(500).send(err);
         res.json({ message: "Successfully deleted" });
     })
 };

@@ -27,7 +27,7 @@ exports.addRental = async (req, res) => {
     const movie = await Movie.findById(req.body.movieId);
     if (!movie) return res.status(400).send("Invalid movie.");
     new Fawn.Task().save('rentals', newRental, (err, rental) => {
-        if (err) res.status(404).send(err)
+        if (err) res.status(500).send(err)
         res.json(rental)
     }).update('movies', { _id: movie._id }, { $inc: { numberInStock: -1 } }).run()
 };
@@ -41,7 +41,7 @@ exports.updateRental = async (req, res) => {
 
 exports.deleteRental = async (req, res) => {
     await Rental.findByIdAndRemove(req.params.id, (err) => {
-        if (err) res.status(404).send(err);
+        if (err) res.status(500).send(err);
         res.json({ message: "Successfully deleted" });
     })
 };

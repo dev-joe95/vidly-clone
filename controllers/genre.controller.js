@@ -18,7 +18,7 @@ exports.listGenreById = async (req, res) => {
 exports.addGenre = async (req, res) => {
     const newGenre = new Genre(req.body);
     await newGenre.save((err, genre) => {
-        if (err) res.status(404).send(err)
+        if (err) res.status(500).send(err)
         res.json(genre);
     });
 };
@@ -32,7 +32,7 @@ exports.updateGenre = async (req, res) => {
 
 exports.deleteGenre = async (req, res) => {
     await Genre.findByIdAndRemove(req.params.id, (err, genre) => {
-        if (err) res.status(404).send(err);
+        if (err) res.status(500).send(err);
         res.json({ message: "Successfully deleted" });
     })
 };
