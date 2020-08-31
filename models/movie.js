@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const { genreSchema } = require("./genre")
-
+const genreSchema = require("./genre").Schema
 const movieSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -10,9 +9,9 @@ const movieSchema = new mongoose.Schema({
         trim: true,
     },
     genre: {
-        type: new mongoose.Schema({
+        type: [genreSchema] /* new mongoose.Schema({
             name: { type: String, minlength: 4, maxlength: 50, required: true, trim: true }
-        }), required: true
+        }) */, required: true
     },
     numberInStock: { type: Number, required: true },
     dailyRentalRate: { type: Number },
