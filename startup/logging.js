@@ -1,5 +1,5 @@
 const winston = require("winston");
-// require("winston-mongodb");
+require("winston-mongodb");
 require("express-async-errors");
 
 module.exports = function () {
@@ -11,12 +11,12 @@ module.exports = function () {
         })
     );
 
-    // winston.add(
-    //     new winston.transports.MongoDB({
-    //         db: `mongodb://localhost:27017/vidly`,
-    //         options: { useUnifiedTopology: true },
-    //     })
-    // );
+    winston.add(
+        new winston.transports.MongoDB({
+            db: `mongodb://localhost:27017/vidly`,
+            options: { useUnifiedTopology: true },
+        })
+    );
 
     process.on("uncaughtException", (ex) => {
         winston.error(ex.message, ex);
