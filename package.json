@@ -4,8 +4,11 @@
     "description": "This is a clone for movie application called vidly",
     "main": "app.js",
     "scripts": {
-        "start": "nodemon app.js",
+        "start": "node app.js",
         "test": "jest --watchAll --verbose"
+    },
+    "engines": {
+        "node": "12.16.1"
     },
     "repository": "https://github.com/dev-joe95/vidly-clone",
     "keywords": [],
@@ -14,14 +17,17 @@
     "jest": {
         "testPathIgnorePatterns": [
             "client-app"
-        ]
+        ],
+        "testEnvironment": "node"
     },
     "dependencies": {
         "bcrypt": "^5.0.0",
+        "compression": "^1.7.4",
         "config": "^3.3.1",
         "express": "^4.17.1",
         "express-async-errors": "^3.1.1",
         "fawn": "^2.1.5",
+        "helmet": "^4.1.0",
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.20",
         "mongoose": "^5.10.2",
