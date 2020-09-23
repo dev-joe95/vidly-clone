@@ -13,7 +13,7 @@ app.use(logError);
 app.use(express.static("/public"));
 app.disable("x-powered-by");
 
-const port = process.env.PORT || `3030`;
+const port = process.env.PORT || "3030";
 const server = app.listen(3030, () => {
     winston.info(`Your app is running on http://localhost:${port}`);
 });

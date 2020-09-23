@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
     });
 };
 
-exports.delete = async (req, res) => {
+exports.update = async (req, res) => {
     await Genre.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -35,7 +35,7 @@ exports.delete = async (req, res) => {
     );
 };
 
-exports.deleteGenre = async (req, res) => {
+exports.delete = async (req, res) => {
     await Genre.findByIdAndRemove(req.params.id, (err, genre) => {
         if (err) res.status(500).send(err);
         res.json({ message: "Successfully deleted" });
